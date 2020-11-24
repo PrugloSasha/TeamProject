@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DefectationModelStoreContainer" CdmEntityContainer="DefectationEntities">
+    <EntitySetMapping Name="House">
+      <EntityTypeMapping TypeName="DefectationModel.House">
+        <MappingFragment StoreEntitySet="House">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="house_name" ColumnName="house_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Information">
+      <EntityTypeMapping TypeName="DefectationModel.Information">
+        <MappingFragment StoreEntitySet="Information">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="house_id" ColumnName="house_id" />
+          <ScalarProperty Name="part_id" ColumnName="part_id" />
+          <ScalarProperty Name="sector_id" ColumnName="sector_id" />
+          <ScalarProperty Name="undersector_id" ColumnName="undersector_id" />
+          <ScalarProperty Name="breaking" ColumnName="breaking" />
+          <ScalarProperty Name="repairs" ColumnName="repairs" />
+          <ScalarProperty Name="date_begine" ColumnName="date_begine" />
+          <ScalarProperty Name="date_end" ColumnName="date_end" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Parts">
+      <EntityTypeMapping TypeName="DefectationModel.Parts">
+        <MappingFragment StoreEntitySet="Parts">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="part_name" ColumnName="part_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sectors">
+      <EntityTypeMapping TypeName="DefectationModel.Sectors">
+        <MappingFragment StoreEntitySet="Sectors">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="sector_name" ColumnName="sector_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Undersectors">
+      <EntityTypeMapping TypeName="DefectationModel.Undersectors">
+        <MappingFragment StoreEntitySet="Undersectors">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="undersector_name" ColumnName="undersector_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

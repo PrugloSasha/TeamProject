@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DefectationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="House">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="house_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Information" Relationship="Self.FK_Information_House" FromRole="House" ToRole="Information" />
+  </EntityType>
+  <EntityType Name="Information">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="house_id" Type="Int32" />
+    <Property Name="part_id" Type="Int32" />
+    <Property Name="sector_id" Type="Int32" />
+    <Property Name="undersector_id" Type="Int32" />
+    <Property Name="breaking" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="repairs" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="date_begine" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="date_end" Type="DateTime" Precision="3" />
+    <Property Name="cost" Type="Double" />
+    <NavigationProperty Name="House" Relationship="Self.FK_Information_House" FromRole="Information" ToRole="House" />
+    <NavigationProperty Name="Parts" Relationship="Self.FK_Information_Parts" FromRole="Information" ToRole="Parts" />
+    <NavigationProperty Name="Sectors" Relationship="Self.FK_Information_Sectors" FromRole="Information" ToRole="Sectors" />
+    <NavigationProperty Name="Undersectors" Relationship="Self.FK_Information_Undersectors" FromRole="Information" ToRole="Undersectors" />
+  </EntityType>
+  <EntityType Name="Parts">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="part_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Information" Relationship="Self.FK_Information_Parts" FromRole="Parts" ToRole="Information" />
+  </EntityType>
+  <EntityType Name="Sectors">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sector_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Information" Relationship="Self.FK_Information_Sectors" FromRole="Sectors" ToRole="Information" />
+  </EntityType>
+  <EntityType Name="Undersectors">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="undersector_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Information" Relationship="Self.FK_Information_Undersectors" FromRole="Undersectors" ToRole="Information" />
+  </EntityType>
+  <Association Name="FK_Information_House">
+    <End Role="House" Type="Self.House" Multiplicity="0..1" />
+    <End Role="Information" Type="Self.Information" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="House">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Information">
+        <PropertyRef Name="house_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Information_Parts">
+    <End Role="Parts" Type="Self.Parts" Multiplicity="0..1" />
+    <End Role="Information" Type="Self.Information" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parts">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Information">
+        <PropertyRef Name="part_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Information_Sectors">
+    <End Role="Sectors" Type="Self.Sectors" Multiplicity="0..1" />
+    <End Role="Information" Type="Self.Information" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sectors">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Information">
+        <PropertyRef Name="sector_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Information_Undersectors">
+    <End Role="Undersectors" Type="Self.Undersectors" Multiplicity="0..1" />
+    <End Role="Information" Type="Self.Information" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Undersectors">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Information">
+        <PropertyRef Name="undersector_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DefectationEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="House" EntityType="Self.House" />
+    <EntitySet Name="Information" EntityType="Self.Information" />
+    <EntitySet Name="Parts" EntityType="Self.Parts" />
+    <EntitySet Name="Sectors" EntityType="Self.Sectors" />
+    <EntitySet Name="Undersectors" EntityType="Self.Undersectors" />
+    <AssociationSet Name="FK_Information_House" Association="Self.FK_Information_House">
+      <End Role="House" EntitySet="House" />
+      <End Role="Information" EntitySet="Information" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Information_Parts" Association="Self.FK_Information_Parts">
+      <End Role="Parts" EntitySet="Parts" />
+      <End Role="Information" EntitySet="Information" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Information_Sectors" Association="Self.FK_Information_Sectors">
+      <End Role="Sectors" EntitySet="Sectors" />
+      <End Role="Information" EntitySet="Information" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Information_Undersectors" Association="Self.FK_Information_Undersectors">
+      <End Role="Undersectors" EntitySet="Undersectors" />
+      <End Role="Information" EntitySet="Information" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
